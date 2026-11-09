@@ -3,171 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hackathons for High Schoolers</title>
-<meta name="description" content="A platform for high schoolers to compete in hackathons, showcase projects, and win prizes. Built by high schoolers, for high schoolers.">
+<title>hackhs.org</title>
+<meta name="description" content="Hackathons for high schoolers.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --paper: #F1EEE8;
-    --ink: #1C1917;
-    --ink-soft: #57534E;
-    --line: #D6D3D1;
-    --accent: #C45C26;
-    --accent-deep: #9A4218;
-    --green: #2F6B4F;
+    --bg: #ffffff;
+    --text: #111111;
+    --muted: #666666;
+    --line: #e5e5e5;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Source Sans 3', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    line-height: 1.65;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    font-size: 16px;
   }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
+  .wrap { max-width: 800px; margin: 0 auto; padding: 0 24px; }
   header {
-    padding: 28px 0 0;
+    padding: 24px 0;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
   }
   .logo {
-    font-family: 'Fraunces', serif;
     font-weight: 700;
-    font-size: 1.35rem;
-    letter-spacing: -0.3px;
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
   }
-  .logo b { color: var(--accent); font-weight: 700; }
+  .logo span { color: var(--accent); }
   nav a {
-    color: var(--ink-soft);
+    color: var(--muted);
     text-decoration: none;
-    margin-left: 28px;
+    margin-left: 24px;
     font-size: 0.95rem;
+    font-weight: 500;
   }
-  nav a:hover { color: var(--ink); }
+  nav a:hover { color: var(--text); }
   .hero {
-    padding: 72px 0 56px;
-    max-width: 640px;
+    padding: 64px 0 48px;
   }
   .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+    font-size: 2.5rem;
     font-weight: 700;
-    letter-spacing: -1.2px;
-    line-height: 1.12;
-    margin-bottom: 22px;
-  }
-  .hero h1 i {
-    font-style: italic;
-    color: var(--accent);
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 16px;
   }
   .hero p {
-    font-size: 1.15rem;
-    color: var(--ink-soft);
-    max-width: 520px;
-    margin-bottom: 34px;
+    font-size: 1.125rem;
+    color: var(--muted);
+    max-width: 480px;
+    margin-bottom: 28px;
   }
   .btn {
     display: inline-block;
     background: var(--accent);
-    color: var(--paper);
-    padding: 13px 28px;
-    border-radius: 4px;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 1rem;
-    transition: background 0.15s;
+    font-size: 0.95rem;
     border: none;
     cursor: pointer;
   }
-  .btn:hover { background: var(--accent-deep); }
+  .btn:hover { background: var(--accent-hover); }
   .btn-ghost {
     background: transparent;
-    color: var(--ink);
-    border: 1.5px solid var(--line);
-    margin-left: 14px;
+    color: var(--text);
+    border: 1px solid var(--line);
+    margin-left: 12px;
   }
-  .btn-ghost:hover { border-color: var(--ink-soft); }
-  section { padding: 56px 0; }
+  .btn-ghost:hover { border-color: var(--muted); }
+  section { padding: 48px 0; }
   .section-title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.55rem;
+    font-size: 1.25rem;
     font-weight: 600;
-    margin-bottom: 28px;
-    letter-spacing: -0.4px;
+    margin-bottom: 20px;
   }
-  .why-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    gap: 28px 40px;
-  }
-  .why-grid p {
-    color: var(--ink-soft);
-    font-size: 1.05rem;
-  }
-  .why-grid p strong { color: var(--ink); font-weight: 600; }
   .event {
-    border-top: 1.5px solid var(--line);
-    padding: 26px 0;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
   }
   .event h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     font-weight: 600;
     margin-bottom: 4px;
   }
-  .event .meta { color: var(--ink-soft); font-size: 0.92rem; }
+  .event .meta { color: var(--muted); font-size: 0.9rem; }
   .tag {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    color: var(--green);
-    white-space: nowrap;
+    color: var(--accent);
+    background: #eff6ff;
+    padding: 4px 10px;
+    border-radius: 4px;
   }
-  .tag-soon { color: var(--accent); }
-  .lb { border-top: 1.5px solid var(--line); }
   .lb-row {
     display: grid;
-    grid-template-columns: 52px 1fr 90px;
-    padding: 15px 0;
+    grid-template-columns: 48px 1fr 80px;
+    padding: 12px 0;
     border-bottom: 1px solid var(--line);
     align-items: center;
-    font-size: 0.98rem;
+    font-size: 0.95rem;
   }
-  .lb-row:last-child { border-bottom: none; }
   .lb-row.hd {
-    color: var(--ink-soft);
-    font-size: 0.82rem;
+    color: var(--muted);
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.5px;
   }
-  .rank { font-family: 'Fraunces', serif; font-weight: 700; color: var(--accent); }
-  .empty { color: var(--ink-soft); }
-  form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .field { margin-bottom: 20px; }
+  .rank { font-weight: 700; color: var(--accent); }
+  .empty { color: var(--muted); }
+  form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { margin-bottom: 16px; }
   .field label {
     display: block;
-    font-size: 0.88rem;
-    font-weight: 600;
-    margin-bottom: 7px;
-    color: var(--ink-soft);
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--muted);
   }
-  .field input, .field textarea, .field select {
+  .field input, .field textarea {
     width: 100%;
-    background: var(--paper);
-    border: 1.5px solid var(--line);
-    border-radius: 4px;
-    padding: 11px 14px;
-    color: var(--ink);
-    font-size: 1rem;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 0.95rem;
     font-family: inherit;
   }
   .field input:focus, .field textarea:focus {
@@ -175,25 +153,26 @@
     border-color: var(--accent);
   }
   footer {
-    border-top: 1.5px solid var(--line);
-    padding: 30px 0;
-    color: var(--ink-soft);
-    font-size: 0.9rem;
+    border-top: 1px solid var(--line);
+    padding: 24px 0;
+    color: var(--muted);
+    font-size: 0.875rem;
   }
-  footer a { color: var(--ink-soft); }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
   @media (max-width: 640px) {
-    .why-grid { grid-template-columns: 1fr; }
-    .form .row { grid-template-columns: 1fr; }
-    .event { flex-direction: column; align-items: flex-start; }
-    nav a { margin-left: 18px; }
-    .btn-ghost { margin-left: 0; margin-top: 12px; }
+    .hero h1 { font-size: 2rem; }
+    form .row { grid-template-columns: 1fr; }
+    .event { flex-direction: column; align-items: flex-start; gap: 12px; }
+    nav a { margin-left: 16px; }
+    .btn-ghost { margin-left: 0; margin-top: 10px; }
   }
 </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <div class="logo">hackathons<b>4</b>hs</div>
+      <div class="logo">hack<span>hs</span>.org</div>
       <nav>
         <a href="#events">Events</a>
         <a href="#leaderboard">Leaderboard</a>
@@ -202,87 +181,68 @@
     </header>
 
     <div class="hero">
-      <h1>Hackathons <i>for</i> high schoolers.</h1>
-      <p>Real prizes, public project pages, and a leaderboard that admissions officers can actually find. No corporate middlemen — just students building things.</p>
-      <a href="#events" class="btn">Browse events</a>
-      <a href="#submit" class="btn btn-ghost">Submit a project</a>
+      <h1>Hackathons for high schoolers.</h1>
+      <p>Build projects. Get ranked. Put it on your college apps.</p>
+      <a href="#events" class="btn">See events</a>
+      <a href="#submit" class="btn btn-ghost">Submit project</a>
     </div>
-
-    <section id="why">
-      <h2 class="section-title">The deal</h2>
-      <div class="why-grid">
-        <p>Every event publishes its prize pool before it opens. Cash, credits, or tools — whatever the sponsors put up. You always know what you're competing for.</p>
-        <p>Finish anything and you get a certificate with your name on it. Place in the top three and your project gets its own page on this site, linked from the homepage.</p>
-        <p><strong>Who's running it.</strong> A high schooler in Washington. Themes come from what students ask for, not from a marketing team's keyword list.</p>
-        <p>The first event is free to enter. One hundred dollars in prizes, funded out of pocket, to see if this thing works before asking anyone else to spend.</p>
-      </div>
-    </section>
 
     <section id="events">
       <h2 class="section-title">Events</h2>
       <div class="event">
         <div>
           <h3>Launch Hack</h3>
-          <div class="meta">Theme TBD · 48 hours · Online · First event on this platform</div>
+          <div class="meta">48 hours · Online · $100 prize pool</div>
         </div>
-        <span class="tag tag-soon">Announcing soon</span>
-      </div>
-      <div class="event">
-        <div>
-          <h3>Propose a theme</h3>
-          <div class="meta">Got an idea for a track, format, or challenge? Send it over.</div>
-        </div>
-        <a href="mailto:hello@hackathonsforhighschoolers.org" class="btn btn-ghost">Email it</a>
+        <span class="tag">Coming soon</span>
       </div>
     </section>
 
     <section id="leaderboard">
       <h2 class="section-title">Leaderboard</h2>
-      <div class="lb">
-        <div class="lb-row hd">
-          <div>Rank</div>
-          <div>Project</div>
-          <div>Points</div>
-        </div>
-        <div class="lb-row">
-          <div class="rank">—</div>
-          <div class="empty">Nothing here yet. First submission wins by default.</div>
-          <div class="empty">—</div>
-        </div>
+      <div class="lb-row hd">
+        <div>Rank</div>
+        <div>Project</div>
+        <div>Points</div>
+      </div>
+      <div class="lb-row">
+        <div class="rank">—</div>
+        <div class="empty">No projects yet</div>
+        <div class="empty">—</div>
       </div>
     </section>
 
     <section id="submit">
       <h2 class="section-title">Submit a project</h2>
-      <form onsubmit="event.preventDefault(); alert('Submissions open when Launch Hack goes live.');">
+      <form onsubmit="event.preventDefault(); alert('Submissions open when Launch Hack starts.');">
         <div class="row">
           <div class="field">
             <label for="name">Name</label>
-            <input type="text" id="name" placeholder="Jane Doe" required>
+            <input type="text" id="name" required>
           </div>
           <div class="field">
             <label for="school">School</label>
-            <input type="text" id="school" placeholder="Issaquah High School" required>
+            <input type="text" id="school" required>
           </div>
         </div>
         <div class="field">
           <label for="project">Project name</label>
-          <input type="text" id="project" placeholder="EcoSort AI" required>
+          <input type="text" id="project" required>
         </div>
         <div class="field">
           <label for="desc">What did you build?</label>
-          <textarea id="desc" rows="4" placeholder="What it does, how it works, what you used. Two or three sentences is fine." required></textarea>
+          <textarea id="desc" rows="3" required></textarea>
         </div>
         <div class="field">
-          <label for="link">Link — GitHub, demo, or video</label>
-          <input type="url" id="link" placeholder="https://github.com/..." required>
+          <label for="link">Link (GitHub or demo)</label>
+          <input type="url" id="link" required>
         </div>
         <button type="submit" class="btn">Submit</button>
       </form>
     </section>
 
     <footer>
-      <p>hackathons4hs · built by a high schooler in Issaquah · <a href="https://github.com/NeilSharma425/hackathons">source</a></p>
+      <p>hackhs.org · built by a high schooler · <a href="https://github.com/NeilSharma425/hackathons">source</a></p>
     </footer>
   </div>
 </body>
