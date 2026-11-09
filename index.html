@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hackathons for High Schoolers</title>
+<meta name="description" content="A platform for high schoolers to compete in hackathons, showcase projects, and win prizes. Built by high schoolers, for high schoolers.">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2e3d;
+    --text: #e8eaf0;
+    --muted: #8b8fa3;
+    --accent: #6c5ce7;
+    --accent-hover: #7d6ff0;
+    --green: #00d2a0;
+    --orange: #ff9f43;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+  header {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); }
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    margin-left: 24px;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--text); }
+  .hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 36px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.15s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    margin-left: 12px;
+  }
+  .btn-secondary:hover { border-color: var(--muted); }
+  section { padding: 60px 0; }
+  .section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 32px;
+    letter-spacing: -0.5px;
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+  }
+  .card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+  .card p { color: var(--muted); font-size: 0.95rem; }
+  .card .icon { font-size: 1.6rem; margin-bottom: 14px; }
+  .event-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .event-card h3 { font-size: 1.15rem; margin-bottom: 4px; }
+  .event-card .meta { color: var(--muted); font-size: 0.9rem; }
+  .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .badge-open { background: rgba(0, 210, 160, 0.15); color: var(--green); }
+  .badge-soon { background: rgba(255, 159, 67, 0.15); color: var(--orange); }
+  .leaderboard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .leaderboard-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 120px;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+  }
+  .leaderboard-row:last-child { border-bottom: none; }
+  .leaderboard-row.header {
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .rank { font-weight: 700; color: var(--accent); }
+  .form-group { margin-bottom: 20px; }
+  .form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--muted);
+  }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: inherit;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  @media (max-width: 640px) {
+    .form-row { grid-template-columns: 1fr; }
+    .event-card { flex-direction: column; align-items: flex-start; }
+    nav a { margin-left: 16px; }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">hackathons<span>4</span>hs</div>
+      <nav>
+        <a href="#events">Events</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#submit">Submit</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <h1>Hackathons <em>for</em> High Schoolers</h1>
+      <p>A platform where high school students compete, build, and win. Real prizes, public showcases, and a leaderboard that counts for college apps.</p>
+      <a href="#events" class="btn">See Events</a>
+      <a href="#submit" class="btn btn-secondary">Submit a Project</a>
+    </div>
+
+    <section id="why">
+      <h2 class="section-title">Why join?</h2>
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🏆</div>
+          <h3>Real Prizes</h3>
+          <p>Cash and product prizes for top projects. Every event has a published prize pool before it starts.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📜</div>
+          <h3>Certificates + Portfolio</h3>
+          <p>Every finisher gets a certificate. Top entries get featured on the homepage with a public project page.</p>
+        </div>
+        <div class="card">
+          <div class="icon">🚀</div>
+          <h3>Built by Teens</h3>
+          <p>Run by high schoolers who get it. Themes, rules, and judging designed around what students actually want to build.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="events">
+      <h2 class="section-title">Events</h2>
+      <div class="event-card">
+        <div>
+          <h3>Launch Hack — Coming Soon</h3>
+          <div class="meta">Theme TBD · 48 hours · Online · First event on this platform</div>
+        </div>
+        <span class="badge badge-soon">Announcing soon</span>
+      </div>
+      <div class="event-card">
+        <div>
+          <h3>Have an idea for a hackathon?</h3>
+          <div class="meta">Propose a theme, format, or track and we'll feature it.</div>
+        </div>
+        <a href="mailto:hello@hackathonsforhighschoolers.org" class="btn btn-secondary">Propose</a>
+      </div>
+    </section>
+
+    <section id="leaderboard">
+      <h2 class="section-title">Leaderboard</h2>
+      <div class="leaderboard">
+        <div class="leaderboard-row header">
+          <div>Rank</div>
+          <div>Project</div>
+          <div>Points</div>
+        </div>
+        <div class="leaderboard-row">
+          <div class="rank">—</div>
+          <div style="color: var(--muted)">No submissions yet. Be the first.</div>
+          <div style="color: var(--muted)">—</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="submit">
+      <h2 class="section-title">Submit a Project</h2>
+      <form onsubmit="event.preventDefault(); alert('Form demo — submissions open when the first event launches.');">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="Jane Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="school">School</label>
+            <input type="text" id="school" placeholder="Issaquah High School" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="project">Project Name</label>
+          <input type="text" id="project" placeholder="EcoSort AI" required>
+        </div>
+        <div class="form-group">
+          <label for="desc">What did you build?</label>
+          <textarea id="desc" rows="4" placeholder="Short description of your project, what it does, and the tech you used." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="link">Project Link (GitHub, demo, or video)</label>
+          <input type="url" id="link" placeholder="https://github.com/..." required>
+        </div>
+        <button type="submit" class="btn">Submit Project</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>hackathons4hs · Built by high schoolers, for high schoolers · <a href="https://github.com/NeilSharma425/hackathons" style="color: var(--muted)">GitHub</a></p>
+    </footer>
+  </div>
+</body>
+</html>
